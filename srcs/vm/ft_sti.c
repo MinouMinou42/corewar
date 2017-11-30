@@ -6,7 +6,7 @@
 /*   By: nolivier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/03 11:57:55 by nolivier          #+#    #+#             */
-/*   Updated: 2017/11/03 15:39:36 by khabbar          ###   ########.fr       */
+/*   Updated: 2017/11/30 14:26:00 by nolivier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ static void		ft_graph_sti(t_process *process, unsigned char **params,
 		sets->info_mem[((process->proc_counter + tmp + i) % MEM_SIZE) * 3] =
 		(sets->info_mem[((process->proc_counter + tmp + i) % MEM_SIZE) * 3] &
 		0xf0) | ((process->status >> 24) & 0xf);
-		sets->info_mem[((process->proc_counter + tmp + i) % MEM_SIZE)
-		* 3 + 2] |= (STORE_TIME & 0x7f);
+		sets->info_mem[((process->proc_counter + tmp + i) % MEM_SIZE) * 3 + 2] =
+		(sets->info_mem[((process->proc_counter + tmp + i) % MEM_SIZE) * 3
+		+ 2] & 0x80) | (STORE_TIME & 0x7f);
 		i++;
 	}
 }
